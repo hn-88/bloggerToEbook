@@ -1,7 +1,7 @@
 var blogurl = 'https://sathyasaiwithstudents.blogspot.com/';
 var todatestring = '';
 var fromdatestring = '';
-var desiredebooktitle = 'Conversations Sathya Sai with Students';
+var desiredebooktitle = 'Conversations Sathya Sai with Students v2';
 //var publishedstr = "start_published_date:"+fromdatestring+" end_published_date:"+todatestring;
 var publishedstr = '';
 
@@ -55,7 +55,7 @@ function myFunction() {
         mimeType: MimeType.GOOGLE_DOCS },
         ablob
       ).id;
-      Logger.log('Wrote the file to GDoc.');
+      Logger.log('Wrote "%s" to GDoc.', desiredebooktitle+' part '+ loopindex );
     }
     catch(err){
       Logger.log('Error is %s', err)
@@ -63,6 +63,6 @@ function myFunction() {
     loopindex++;
     contenthtml='';
     
-  } while (i>2);  
+  } while (i>98);  
   
 }
