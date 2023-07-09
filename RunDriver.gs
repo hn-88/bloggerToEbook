@@ -38,7 +38,7 @@ function invokeMBBWithDefaultValues() {
   Logger.log(funcReturnMsg);
 }
 
-// Invokes makeBlogBooks (MBB) for my spiritual blog with year parameter in a loop.
+// Invokes makeBlogBooks (MBB) for my Spiritual blog with year parameter in a loop.
 // In past runs, the function has timed out due to execution timing out (crossing some execution time limit
 // I guess) and so had to have an additional run for the remaining part of the blog (comments below have
 // details of that) with first run code commented out.
@@ -47,7 +47,8 @@ function makeMySpiritualBlogBooksYearWise() {
   var funcReturnMsg;
 
   /*for(year = 2023; year > 2012; year--){
-    funcReturnMsg = makeBlogBooks("https://ravisiyer.blogspot.com/", year, null, 400, null, "ravisiyer.blogspot.com"); 
+    funcReturnMsg = makeBlogBooks("https://ravisiyer.blogspot.com/", year, null, 400, null,
+    "ravisiyer.blogspot.com"); 
     Logger.log(funcReturnMsg);
   }*/
   // 4 Jul 2023: Above code produced blog books from 2023 to 2016 - need to check them out.
@@ -56,9 +57,62 @@ function makeMySpiritualBlogBooksYearWise() {
   // of above run.
 
   for(year = 2015; year > 2012; year--){
-    funcReturnMsg = makeBlogBooks("https://ravisiyer.blogspot.com/", year, null, 400, null, "ravisiyer.blogspot.com"); 
+    funcReturnMsg = makeBlogBooks("https://ravisiyer.blogspot.com/", year, null, 400, null,
+    "ravisiyer.blogspot.com"); 
     Logger.log(funcReturnMsg);
   }
   // 4 Jul 2023: Above code produced blog books from 2015 to 2013 - need to check them out. Program completed
   // normally as blog starts from year 2013.
 }
+
+// Invokes makeBlogBooks (MBB) for my Worldly blog with year parameter in a loop.
+// Split into two functions which will be invoked in two different runs. This may solve any execution time
+// limit issue. Core code for both runs is in a separate function
+function makeMyWorldlyBBYrlyRun1() {
+  makeMyWorldlyBlogBooksYearWise(2023, 2017);
+}
+// 5 Jul 2023: Above function run did not have any execution timeout and created 19 output doc files from
+// "ravisiyermisc.blogspot.com, year: 2023, part 1" to // "ravisiyermisc.blogspot.com, year: 2017, part 5".
+// Sample checking of few docs from the set indicate that these output docs are as expected.
+
+function makeMyWorldlyBBYrlyRun2() {
+  makeMyWorldlyBlogBooksYearWise(2016, 2007);
+}
+// 5 Jul 2023: Above function run did not have any execution timeout and created 10 output doc files from
+// "ravisiyermisc.blogspot.com, year: 2016, part 1" to "ravisiyermisc.blogspot.com, year: 2007, part 1".
+// Sample checking of few docs from the set indicate that these output docs are mostly as expected but 
+// with some issues.
+// "ravisiyermisc.blogspot.com, year: 2009, part 1" pics are missing!!! Needs further investigation.
+// But "ravisiyermisc.blogspot.com, year: 2015, part 1" pics are shown! Is there an issue with pics format
+// of older than 2015 posts which the Google Apps Script code is not able to handle properly?
+
+function makeMyWorldlyBlogBooksYearWise(yearStart, yearEnd) {
+  var year;
+  var funcReturnMsg;
+
+  for(year = yearStart; year >= yearEnd; year--){
+    funcReturnMsg = makeBlogBooks("https://ravisiyermisc.blogspot.com/", year, null, 400, null,
+    "ravisiyermisc.blogspot.com"); 
+    Logger.log(funcReturnMsg);
+  }
+}
+
+// TNS blog is a small one and so all of it can go into blog book(s) in one run
+function makeMyTNSBlogBooks() {
+  funcReturnMsg = makeBlogBooks("https://tnarayanasasthri.blogspot.com/", null, null, null, null,
+  "tnarayanasasthri.blogspot.com"); 
+  Logger.log(funcReturnMsg);
+}
+// 6 Jul 2023: Above function run did not have any execution timeout and created 1 output doc file - 
+// "tnarayanasasthri.blogspot.com part 1". This document seems to be as expected.
+
+// EklavyaSai (Indian CS & IT Academic Reform past activism) blog is a medium sized one and so all of it
+// can go into blog book(s) in one run.
+function makeMyEklavyaSaiBlogBooks() {
+  funcReturnMsg = makeBlogBooks("https://eklavyasai.blogspot.com/", null, null, 400, null,
+  "eklavyasai.blogspot.com"); 
+  Logger.log(funcReturnMsg);
+}
+// 6 Jul 2023: Above function run did not have any execution timeout and created 5 output doc files from 
+// "eklavyasai.blogspot.com part 1" to "eklavyasai.blogspot.com part 5".
+// These documents seem to be as expected.
